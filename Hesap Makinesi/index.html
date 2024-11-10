@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesap Makinesi | Ahmet Adanur</title>
+    
+    <style>
+        body {
+            background: linear-gradient(50deg, #ff6a00, #ee0979);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .calculator-container {
+            background: #1d1f26;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calculator-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #ffdf00;
+        }
+
+        .calculator-screen {
+            background: #252d3a;
+            border: none;
+            color: #fff;
+            padding: 15px;
+            font-size: 2rem;
+            text-align: right;
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            font-size: 1.5rem; 
+            padding: 20px;
+            margin: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-number {
+            background: #404c61;
+            color: #fff;
+        }
+
+        .btn-number:hover {
+            background: #616c83;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-operator {
+            background: #ff4d00;
+            color: #fff;
+        }
+
+        .btn-operator:hover {
+            background: #e84e00;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-equal {
+            background: #00b894;
+            color: #fff;
+            grid-column: span 2;
+        }
+
+        .btn-equal:hover {
+            background: #02a77f;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-clear {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .btn-clear:hover {
+            background: #c0392b;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>Hesap Makinesi</h2>
+        <input type="text" id="result" class="calculator-screen" disabled />
+
+        <div class="btn-container">
+            <button class="btn btn-number" onclick="appendValue('7')">7</button>
+            <button class="btn btn-number" onclick="appendValue('8')">8</button>
+            <button class="btn btn-number" onclick="appendValue('9')">9</button>
+            <button class="btn btn-operator" onclick="appendValue('+')">+</button>
+
+            <button class="btn btn-number" onclick="appendValue('4')">4</button>
+            <button class="btn btn-number" onclick="appendValue('5')">5</button>
+            <button class="btn btn-number" onclick="appendValue('6')">6</button>
+            <button class="btn btn-operator" onclick="appendValue('-')">-</button>
+
+            <button class="btn btn-number" onclick="appendValue('1')">1</button>
+            <button class="btn btn-number" onclick="appendValue('2')">2</button>
+            <button class="btn btn-number" onclick="appendValue('3')">3</button>
+            <button class="btn btn-operator" onclick="appendValue('*')">*</button>
+
+            <button class="btn btn-number" onclick="appendValue('0')">0</button>
+            <button class="btn btn-clear" onclick="clearScreen()">C</button>
+            <button class="btn btn-equal" onclick="calculateResult()">=</button>
+            <button class="btn btn-operator" onclick="appendValue('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        function appendValue(value) {
+            document.getElementById("result").value += value;
+        }
+
+        function clearScreen() {
+            document.getElementById("result").value = '';
+        }
+
+        function calculateResult() {
+            try {
+                let result = eval(document.getElementById("result").value);
+                document.getElementById("result").value = result;
+            } catch (error) {
+                document.getElementById("result").value = 'Hata';
+            }
+        }
+    </script>
+
+</body>
+</html>
